@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Open Sans for body text */
+body,
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    /* Regular */
+}
+
+.exo-font {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 400;
+    /* Regular weight */
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 64px;
+}
+h2 {
+    font-size: 48px;
+}
+h3 {
+    font-size: 40px;
+    font-weight: 500;
+}

@@ -13,6 +13,14 @@ import "./index.css";
 import { dojoConfig } from "../dojoConfig.ts";
 import StarknetProvider from "./starknet-provider.tsx";
 
+// style imports
+import "@fontsource/exo-2"; // Defaults to 400 weight
+import "@fontsource/exo-2/600.css"; 
+import "@fontsource/exo-2/700.css"; 
+import "@fontsource/open-sans"; // Default 400 weight
+import "@fontsource/open-sans/600.css"; 
+import "@fontsource/open-sans/700.css"; 
+
 /**
  * Initializes and bootstraps the Dojo application.
  * Sets up the SDK, burner manager, and renders the root component.
@@ -35,17 +43,17 @@ async function main() {
     });
 
     createRoot(document.getElementById("root")!).render(
-        <StrictMode>
-            <DojoSdkProvider
-                sdk={sdk}
-                dojoConfig={dojoConfig}
-                clientFn={setupWorld}
-            >
-                <StarknetProvider>
-                    <App />
-                </StarknetProvider>
-            </DojoSdkProvider>
-        </StrictMode>
+      <StrictMode>
+        <DojoSdkProvider
+          sdk={sdk}
+          dojoConfig={dojoConfig}
+          clientFn={setupWorld}
+        >
+          <StarknetProvider>
+                <App />
+          </StarknetProvider>
+        </DojoSdkProvider>
+      </StrictMode>
     );
 }
 
