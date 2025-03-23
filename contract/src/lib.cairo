@@ -10,5 +10,11 @@ pub mod models {
     pub mod vec2;
 }
 
+pub mod types {
+    pub mod player_position;
+}
+
+#[cfg(test)]
 pub mod tests {
+    pub mod test_player_position;
 }
