@@ -3,6 +3,7 @@ pub mod systems {
 }
 
 pub mod models {
+    pub mod user;
     pub mod position;
     pub mod direction;
     pub mod directions_available;
@@ -11,4 +12,5 @@ pub mod models {
     pub mod vec2;
 }
 
-pub mod tests {}
+#[cfg(test)]
+pub mod tests;
