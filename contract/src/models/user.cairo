@@ -1,5 +1,4 @@
 use starknet::ContractAddress;
-
 #[derive(Model, Copy, Drop, Serde)]
 struct User {
     #[key]
@@ -24,7 +23,6 @@ mod tests {
             created_at: 1710000000_u64,
             last_connection: 1710500000_u64,
         };
-
         assert(user1.id == ContractAddress::from(0x1234_u64), "Wrong user id");
         assert(user1.username == 252u8.into(), "Wrong username");
         assert(user1.tournaments_won == 3_u16, "Wrong tournaments_won");
