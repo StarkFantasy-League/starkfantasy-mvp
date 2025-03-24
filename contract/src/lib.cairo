@@ -9,6 +9,7 @@ pub mod models {
     pub mod formation;
     pub mod moves;
     pub mod vec2;
+    pub mod user;
 
     pub mod team;
 
