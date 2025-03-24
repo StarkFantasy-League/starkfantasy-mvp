@@ -8,6 +8,7 @@ pub mod models {
     pub mod directions_available;
     pub mod moves;
     pub mod vec2;
+    pub mod team;
 }
 
 pub mod tests {
