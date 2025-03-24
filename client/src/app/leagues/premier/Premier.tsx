@@ -2,6 +2,7 @@
 
 import Header from "../../../components/header/page";
 import Sidebar from "../../../components/sidebar/Sidebar";
+import TopScorers from "./components/topScorers";
 import { useState } from "react";
 
 const PremierLeague = () => {
@@ -23,17 +24,22 @@ const PremierLeague = () => {
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
         />
 
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#221D2F]/[0.82] via-[#1F1B2C]/[0.31] to-[#1D1829]/[0] z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#221D2F]/[0.82] via-[#1F1B2C]/[0.31] to-[#1D1829]/[0] z-10" />
 
-        <div className="relative z-20 flex flex-col items-center justify-center leading-[80px] text-center p-4 flex-grow">
-
+        <div className="relative z-20 flex flex-col p-4 flex-grow">
           {user.isConnected ? (
             <>
-              <h2 className="text-lg md:text-2xl tracking-[0.2em] uppercase">Welcome to</h2>
-              <h1 className="text-[40px] sm:text-[70px] md:text-[95px] lg:text-[90px] font-black mt-2">Premier League</h1>
-              <h3 className="text-sm sm:text-xl font-medium tracking md:text-2xl lg:text-3xl lg:tracking-[1.7em] md:mt-5 sm:tracking-[1.8em] mt-2">
-                Tournament
-              </h3>
+              <div className="text-center mb-8">
+                <h2 className="text-lg md:text-2xl tracking-[0.2em] uppercase">Welcome to</h2>
+                <h1 className="text-[40px] sm:text-[70px] md:text-[95px] lg:text-[90px] font-black mt-2">Premier League</h1>
+                <h3 className="text-sm sm:text-xl font-medium tracking md:text-2xl lg:text-3xl lg:tracking-[1.7em] md:mt-5 sm:tracking-[1.8em] mt-2">
+                  Tournament
+                </h3>
+              </div>
+              
+              <div className="mt-8 max-w-4xl mx-auto w-full">
+                <TopScorers />
+              </div>
             </>
           ) : (
             <p className="mt-4 text-sm md:text-base">
@@ -41,7 +47,6 @@ const PremierLeague = () => {
             </p>
           )}
         </div>
-
       </div>
     </div>
   );
