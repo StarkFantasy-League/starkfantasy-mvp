@@ -3,12 +3,13 @@ import WelcomePage from "./components/WelcomePage";
 import Footer from "@/components/footer";
 
 export default function Page() {
-    return (
-        <>
-            <Header />
-            
-            <WelcomePage />
-            <Footer />
-        </>
-    );
+
+	return (
+		<>
+			<Header />
+			<WelcomePage />
+			<Footer />
+		</>
+	);
 }
+

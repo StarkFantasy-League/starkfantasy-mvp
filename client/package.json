@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dojoengine/core": "^0.6.125",
-    "@dojoengine/create-burner": "^0.6.125",
-    "@dojoengine/predeployed-connector": "^1.2.4",
-    "@dojoengine/sdk": "^1.1.4",
-    "@dojoengine/torii-client": "^1.2.4",
-    "@dojoengine/torii-wasm": "^1.2.4",
+
+    "@dojoengine/core": "^0.6.122",
+    "@dojoengine/create-burner": "^0.6.122",
+    "@dojoengine/predeployed-connector": "1.2.4",
+    "@dojoengine/sdk": "^1.1.3",
+    "@dojoengine/torii-client": "1.2.4",
+    "@dojoengine/torii-wasm": "1.2.4",
+
     "@dojoengine/utils": "^0.1.35",
     "@fontsource/exo-2": "^5.2.5",
     "@fontsource/open-sans": "^5.2.5",
