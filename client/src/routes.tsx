@@ -8,15 +8,15 @@
  *  - Use `layout.tsx` for the definition of special layouts in modules
  */
 
-
 import { ComponentType, lazy } from "react";
+import Demo from "./app/demo";
 
 type LayoutModule = {
-  default: ComponentType<any>;
+	default: ComponentType<any>;
 };
 // Define the type for the page module
 type PageModule = {
-  default: ComponentType<any>;
+	default: ComponentType<any>;
 };
 
 // Escanear todos los archivos en "modules"
@@ -24,52 +24,52 @@ const pages = import.meta.glob<PageModule>("./app/**/page.tsx");
 const layouts = import.meta.glob<LayoutModule>("./app/**/layout.tsx");
 
 interface Route {
-  path: string;
-  element: JSX.Element | null;
-  children: Record<string, Route>;
+	path: string;
+	element: JSX.Element | null;
+	children: Record<string, Route>;
 }
 
 const buildRoutes = (paths: string[], base = ""): Route[] => {
-  const routeMap: Record<string, Route> = {};
+	const routeMap: Record<string, Route> = {};
 
-  paths.forEach((path) => {
-    const relativePath = path.replace("./app/", "").replace("/page.tsx", "");
-    const segments = relativePath.split("/");
+	paths.forEach((path) => {
+		const relativePath = path.replace("./app/", "").replace("/page.tsx", "");
+		const segments = relativePath.split("/");
 
-    let current: Record<string, Route> = routeMap;
-    let accumulatedPath = base;
+		let current: Record<string, Route> = routeMap;
+		let accumulatedPath = base;
 
-    segments.forEach((segment, index) => {
-      accumulatedPath += `/${segment}`;
+		segments.forEach((segment, index) => {
+			accumulatedPath += `/${segment}`;
 
-      if (!current[segment]) {
-        current[segment] = {
-          path: accumulatedPath,
-          element: null,
-          children: {},
-        };
-      }
+			if (!current[segment]) {
+				current[segment] = {
+					path: accumulatedPath,
+					element: null,
+					children: {},
+				};
+			}
 
-      if (index === segments.length - 1) {
-        const Layout = layouts[`./app/${relativePath}/layout.tsx`]
-          ? lazy(layouts[`./app/${relativePath}/layout.tsx`])
-          : null;
-        const Page = lazy(pages[path]);
+			if (index === segments.length - 1) {
+				const Layout = layouts[`./app/${relativePath}/layout.tsx`]
+					? lazy(layouts[`./app/${relativePath}/layout.tsx`])
+					: null;
+				const Page = lazy(pages[path]);
 
-        current[segment].element = Layout ? (
-          <Layout>
-            <Page />
-          </Layout>
-        ) : (
-          <Page />
-        );
-      }
+				current[segment].element = Layout ? (
+					<Layout>
+						<Page />
+					</Layout>
+				) : (
+					<Page />
+				);
+			}
 
-      current = current[segment].children;
-    });
-  });
+			current = current[segment].children;
+		});
+	});
 
-  return Object.values(routeMap);
+	return Object.values(routeMap);
 };
 
 // Crear rutas jerárquicas
@@ -79,12 +79,18 @@ const routes = buildRoutes(Object.keys(pages));
 const hasRootRoute = routes.some((route) => route.path === "/");
 
 if (!hasRootRoute) {
-  const RootPage = lazy(pages["./app/page.tsx"]);
-  routes.unshift({
-    path: "/",
-    element: <RootPage />,
-    children: {},
-  });
+	const RootPage = lazy(pages["./app/page.tsx"]);
+	routes.unshift({
+		path: "/",
+		element: <RootPage />,
+		children: {},
+	});
 }
+
+routes.push({
+	path: "/demo",
+	element: <Demo />,
+	children: {},
+});
 
 export default routes;

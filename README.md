@@ -25,23 +25,39 @@ StarkFantasy is the next generation of fantasy sports built on Starknet, bringin
 
 ## Roadmap 🗺️
 
-### Phase 1: MVP - Premier League Focus
-- Basic team creation and management
-- Point calculation system
-- Simple tournament structure
-- Integration with Controller Wallet
+### Q2 2025 (April - June): MVP Launch
+- ⚽ Premier League API integration and data consumption
+- 👥 Team creation system with 11-player selection
+- 🧮 Core game mechanics and scoring logic implementation
+- 🏆 Tournament creation and participation features
+- 🔌 Cartridge Controller integration
+- 🧪 Comprehensive testing and MVP launch on testnet
 
-### Phase 2: Enhanced Features
-- Support for additional European leagues
-- Advanced statistics and analytics
-- Enhanced UI/UX and mobile responsiveness
-- Social features and community engagement
+### Q3 2025 (July - September): Enhanced Features & Mainnet
+- 💸 Payment and fee collection system implementation
+- 📊 Leaderboards and competitive rankings
+- 📈 Advanced statistics and analytics dashboard
+- 📱 Enhanced UI/UX with mobile responsiveness
+- 🚀 Mainnet deployment
+- 🔐 Security audits and optimization
 
-### Phase 3: Expansion
-- Tokenomics implementation
-- Cross-chain compatibility
-- API for third-party developers
-- Mobile app deployment
+### Q4 2025 (October - December): Expansion Phase
+- 🌍 Additional European leagues integration (La Liga, Serie A, Bundesliga)
+- 🏆 FIFA World Cup special mode implementation
+- 🤖 AI Manager assistant feature
+- 🔄 Cross-league tournaments
+
+### Q1 2026 (January - March): Advanced Features
+- ⚡ Team synergy and chemistry bonuses system
+- 🔮 Prediction pools with fantasy points
+- 🏅 Seasonal rewards and achievements system
+- 📊 Historical player performance tracking
+- 👨‍👩‍👧‍👦 Enhanced social and community features
+
+### Q2 2026 (April - June): Ecosystem Growth
+- 🤝 Partnerships with sports data providers
+- 📱 Mobile app development
+- 🌐 International market expansion
 
 ## Getting Started 🚀
 

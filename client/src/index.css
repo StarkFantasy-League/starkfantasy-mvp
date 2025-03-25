@@ -40,3 +40,12 @@ h3 {
     font-size: 40px;
     font-weight: 500;
 }
+
+
+.table-cell {
+    @apply px-[10px] py-[8px] text-center text-sm font-normal w-[100px] min-h-[48px];
+}
+
+.table-ha{
+    @apply p-3 cursor-pointer font-normal bg-indigo-800 sticky top-0
+}
