@@ -2,7 +2,7 @@ use starkfantasy::types::player_position::PlayerPosition;
 use starkfantasy::types::player_status::PlayerStatus;
 
 
-#[derive(Copy, Drop, Serde, Debug, PartialEq)]
+#[derive(Copy, Drop, Serde, Debug, PartialEq, Introspect)]
 #[dojo::model]
 struct Player{
     #[key] id: u64,

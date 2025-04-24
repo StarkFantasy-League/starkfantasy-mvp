@@ -1,10 +1,10 @@
 [world]
-name = "Dojo starter"
+name = "starkfantasy"
 description = "The official Dojo Starter guide, the quickest and most streamlined way to get your Dojo Autonomous World up and running. This guide will assist you with the initial setup, from cloning the repository to deploying your world."
 cover_uri = "file://assets/cover.png"
 icon_uri = "file://assets/icon.png"
 website = "https://github.com/dojoengine/dojo-starter"
-seed = "dojo_starter"
+seed = "starkfantasy"
 
 [world.socials]
 x = "https://x.com/ohayo_dojo"
@@ -13,7 +13,7 @@ github = "https://github.com/dojoengine/dojo-starter"
 telegram = "https://t.me/dojoengine"
 
 [namespace]
-default = "dojo_starter"
+default = "starkfantasy"
 
 [env]
 rpc_url = "http://localhost:5050/"
@@ -23,4 +23,4 @@ private_key = "0xc5b2fcab997346f3ea1c00b002ecf6f382c5f9c9659a3894eb783c5320f912"
 #world_address = "0x06171ed98331e849d6084bf2b3e3186a7ddf35574dd68cab4691053ee8ab69d7" # Uncomment and update this line with your world address.
 
 [writers]
-"dojo_starter" = ["dojo_starter-actions"]
+"starkfantasy" = ["starkfantasy-actions"]

@@ -24,6 +24,7 @@ struct Tournament {
 #[generate_trait]
 pub impl TournamentImpl of TournamentTrait {
     fn create_tournament(
+        id: u64,
         name: felt252,
         description: felt252,
         entry_fee: u256,
@@ -185,6 +186,7 @@ mod tests {
         let current_time = get_block_timestamp();
         
         let tournament = TournamentImpl::create_tournament(
+            1_u64,
             'Test Tournament',
             'Tournament for testing',
             100_u256,
@@ -218,6 +220,7 @@ mod tests {
         
         // Attempt to create a tournament with a past start date
         TournamentImpl::create_tournament(
+            1_u64,
             'Past Tournament',
             'This should fail',
             100_u256,

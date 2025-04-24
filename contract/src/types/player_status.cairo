@@ -1,6 +1,6 @@
 use core::traits::Into;
 
-#[derive(Copy, Drop, Serde, Debug, PartialEq)]
+#[derive(Copy, Drop, Serde, Debug, PartialEq, Introspect)]
 pub enum PlayerStatus {
     Available,
     Injured,

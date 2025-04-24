@@ -1,6 +1,6 @@
 use core::traits::Into;
 
-#[derive(Copy, Drop, Serde, PartialEq)]
+#[derive(Copy, Drop, Serde, PartialEq, Debug, Introspect)]
 pub enum PlayerPosition {
     Goalkeeper,
     Defender,
