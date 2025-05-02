@@ -95,7 +95,7 @@ pub impl GameweekImpl of GameweekTrait {
 #[cfg(test)]
 mod tests {
     use super::{Gameweek, GameweekImpl};
-    use starknet::get_block_timestamp;
+    use starknet::{get_block_timestamp, testing::set_block_timestamp};
     use starkfantasy::constants;
     
     #[test]
@@ -118,13 +118,15 @@ mod tests {
     #[test]
     #[available_gas(1000000)]
     fn test_gameweek_status_checks() {
-        let current_time = get_block_timestamp();
+        // Set a base timestamp for testing
+        let base_time = 1000000_u64;
+        set_block_timestamp(base_time);
         
         // Create upcoming gameweek
         let upcoming_gameweek = Gameweek {
             gameweek_id: 1_u16,
-            start_timestamp: current_time + constants::SECONDS_PER_DAY,
-            end_timestamp: current_time + (constants::SECONDS_PER_DAY * 3),
+            start_timestamp: base_time + constants::SECONDS_PER_DAY,
+            end_timestamp: base_time + (constants::SECONDS_PER_DAY * 3),
             status: constants::GAMEWEEK_STATUS_UPCOMING,
             season_id: 1_u16,
         };
@@ -132,8 +134,8 @@ mod tests {
         // Create active gameweek
         let active_gameweek = Gameweek {
             gameweek_id: 2_u16,
-            start_timestamp: current_time - constants::SECONDS_PER_DAY,
-            end_timestamp: current_time + constants::SECONDS_PER_DAY,
+            start_timestamp: base_time - constants::SECONDS_PER_HOUR,
+            end_timestamp: base_time + constants::SECONDS_PER_DAY,
             status: constants::GAMEWEEK_STATUS_ACTIVE,
             season_id: 1_u16,
         };
@@ -141,72 +143,76 @@ mod tests {
         // Create completed gameweek
         let completed_gameweek = Gameweek {
             gameweek_id: 3_u16,
-            start_timestamp: current_time - (constants::SECONDS_PER_DAY * 3),
-            end_timestamp: current_time - constants::SECONDS_PER_DAY,
+            start_timestamp: base_time - (constants::SECONDS_PER_DAY * 3),
+            end_timestamp: base_time - constants::SECONDS_PER_HOUR,
             status: constants::GAMEWEEK_STATUS_COMPLETED,
             season_id: 1_u16,
         };
         
         // Test is_active function
-        assert(!GameweekImpl::is_active(@upcoming_gameweek), 'Upcoming should not be active');
-        assert(GameweekImpl::is_active(@active_gameweek), 'Active should be active');
-        assert(!GameweekImpl::is_active(@completed_gameweek), 'Completed should not be active');
+        assert(!GameweekImpl::is_active(@upcoming_gameweek), 'Upcoming not active');
+        assert(GameweekImpl::is_active(@active_gameweek), 'Active is active');
+        assert(!GameweekImpl::is_active(@completed_gameweek), 'Completed not active');
         
         // Test is_completed function
-        assert(!GameweekImpl::is_completed(@upcoming_gameweek), 'Upcoming should not be completed');
-        assert(!GameweekImpl::is_completed(@active_gameweek), 'Active should not be completed');
-        assert(GameweekImpl::is_completed(@completed_gameweek), 'Completed should be completed');
+        assert(!GameweekImpl::is_completed(@upcoming_gameweek), 'Not completed');
+        assert(!GameweekImpl::is_completed(@active_gameweek), 'Not completed');
+        assert(GameweekImpl::is_completed(@completed_gameweek), 'Is completed');
     }
     
     #[test]
     #[available_gas(1000000)]
     fn test_update_status() {
-        let current_time = get_block_timestamp();
+        // Set a base timestamp for testing
+        let base_time = 1000000_u64;
+        set_block_timestamp(base_time);
         
         // Test with a gameweek that's upcoming but should be active
         let mut gameweek = Gameweek {
             gameweek_id: 4_u16,
-            start_timestamp: current_time - (constants::SECONDS_PER_HOUR), // 1 hour ago
-            end_timestamp: current_time + (constants::SECONDS_PER_HOUR), // 1 hour in future
+            start_timestamp: base_time - constants::SECONDS_PER_HOUR, // 1 hour ago
+            end_timestamp: base_time + constants::SECONDS_PER_HOUR, // 1 hour in future
             status: constants::GAMEWEEK_STATUS_UPCOMING, // Deliberately wrong status
             season_id: 1_u16,
         };
         
         GameweekImpl::update_status(ref gameweek);
-        assert(gameweek.status == constants::GAMEWEEK_STATUS_ACTIVE, 'Status should be updated to active');
+        assert(gameweek.status == constants::GAMEWEEK_STATUS_ACTIVE, 'Should be active');
         
         // Test with a gameweek that's active but should be completed
         let mut gameweek = Gameweek {
             gameweek_id: 5_u16,
-            start_timestamp: current_time - (constants::SECONDS_PER_DAY * 2), // 2 days ago
-            end_timestamp: current_time - constants::SECONDS_PER_HOUR, // 1 hour ago
+            start_timestamp: base_time - (constants::SECONDS_PER_DAY * 2), // 2 days ago
+            end_timestamp: base_time - constants::SECONDS_PER_HOUR, // 1 hour ago
             status: constants::GAMEWEEK_STATUS_ACTIVE, // Deliberately wrong status
             season_id: 1_u16,
         };
         
         GameweekImpl::update_status(ref gameweek);
-        assert(gameweek.status == constants::GAMEWEEK_STATUS_COMPLETED, 'Status should be updated to completed');
+        assert(gameweek.status == constants::GAMEWEEK_STATUS_COMPLETED, 'Should be completed');
     }
     
     #[test]
     #[available_gas(1000000)]
     fn test_time_until_start_and_end() {
-        let current_time = get_block_timestamp();
+        // Set a base timestamp for testing
+        let base_time = 1000000_u64;
+        set_block_timestamp(base_time);
         
         let upcoming_gameweek = Gameweek {
             gameweek_id: 6_u16,
-            start_timestamp: current_time + constants::SECONDS_PER_DAY, // 1 day in future
-            end_timestamp: current_time + (constants::SECONDS_PER_DAY * 2), // 2 days in future
+            start_timestamp: base_time + constants::SECONDS_PER_DAY, // 1 day in future
+            end_timestamp: base_time + (constants::SECONDS_PER_DAY * 2), // 2 days in future
             status: constants::GAMEWEEK_STATUS_UPCOMING,
             season_id: 1_u16,
         };
         
         let time_to_start = GameweekImpl::time_until_start(@upcoming_gameweek);
-        assert(time_to_start > 0, 'Time until start should be positive');
-        assert(time_to_start <= constants::SECONDS_PER_DAY, 'Time until start should be <= 1 day');
+        assert(time_to_start > 0, 'Should be positive');
+        assert(time_to_start <= constants::SECONDS_PER_DAY, 'Should be <= 1 day');
         
         let time_to_end = GameweekImpl::time_until_end(@upcoming_gameweek);
-        assert(time_to_end > constants::SECONDS_PER_DAY, 'Time until end should be > 1 day');
-        assert(time_to_end <= constants::SECONDS_PER_DAY * 2, 'Time until end should be <= 2 days');
+        assert(time_to_end > constants::SECONDS_PER_DAY, 'Should be > 1 day');
+        assert(time_to_end <= constants::SECONDS_PER_DAY * 2, 'Should be <= 2 days');
     }
 } 
