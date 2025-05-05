@@ -9,11 +9,19 @@ pub fn ZERO_ADDRESS() -> ContractAddress {
 // Seconds per day
 pub const SECONDS_PER_DAY: u64 = 86400;
 
+// Seconds per hour
+pub const SECONDS_PER_HOUR: u64 = 3600;
+
 // Tournament status
 pub const TOURNAMENT_STATUS_UPCOMING: u8 = 1;
 pub const TOURNAMENT_STATUS_ACTIVE: u8 = 2;
 pub const TOURNAMENT_STATUS_FINISHED: u8 = 3;
 pub const TOURNAMENT_STATUS_CANCELLED: u8 = 4;
+
+// Gameweek status
+pub const GAMEWEEK_STATUS_UPCOMING: u8 = 1;
+pub const GAMEWEEK_STATUS_ACTIVE: u8 = 2;
+pub const GAMEWEEK_STATUS_COMPLETED: u8 = 3;
 
 // Starkfantasy System Configuration Constants
 // This file centralizes all fixed values and configuration parameters 

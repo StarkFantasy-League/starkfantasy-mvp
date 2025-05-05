@@ -6,6 +6,7 @@ pub mod systems {
 
 pub mod helpers {
     pub mod timestamp;
+    pub mod gameweek_helper;
 }
 
 pub mod models {
@@ -15,6 +16,7 @@ pub mod models {
     pub mod player_performance;
     pub mod player;
     pub mod tournament;
+    pub mod gameweek;
 }
 
 pub mod types {
