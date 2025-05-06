@@ -26,7 +26,7 @@ export default function MarketPage() {
           0.10000 STRK
         </div>
       </nav> */}
-      <Sidebar/>
+      <Sidebar currentImage="/assets/images/default-sidebar-image.png"/>
 
       <div className="flex">
         <aside className="w-52 bg-gray-900 text-white min-h-screen p-6">
