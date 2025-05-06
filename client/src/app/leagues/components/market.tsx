@@ -1,4 +1,6 @@
+import Header from "@/components/header/page";
 import Image from "@/components/image";
+import Sidebar from "@/components/sidebar/Sidebar";
 const playerCards = [
   { rarity: "Legendary", color: "bg-orange-500", price: 250 },
   { rarity: "Rare", color: "bg-blue-500", price: 250 },
@@ -8,6 +10,7 @@ const playerCards = [
 export default function MarketPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-blue-900 to-black text-white font-sans">
+        <Header/>
       {/* <nav className="flex justify-between items-center px-8 py-4 bg-black shadow-md">
         <div className="text-2xl font-bold">StarkFantasy League</div>
         <div className="flex gap-6 text-sm">
@@ -23,6 +26,7 @@ export default function MarketPage() {
           0.10000 STRK
         </div>
       </nav> */}
+      <Sidebar/>
 
       <div className="flex">
         <aside className="w-52 bg-gray-900 text-white min-h-screen p-6">
