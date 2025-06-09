@@ -1,6 +1,6 @@
 // Core imports
 use core::hash::{HashStateTrait};
-use core::pedersen::PedersenTrait;
+use core::pedersen::{PedersenTrait, pedersen};
 
 // Starknet import
 use starknet::{get_block_timestamp, get_block_number};
@@ -81,7 +81,8 @@ pub impl PseudoRandom of PseudoRandomTrait {
         let hash = pedersen(pedersen(timestamp.into(), block_number.into()), salt);
         
         // Convert the hash to a u32 value (take the lower 32 bits)
-        let hash_u32: u32 = (hash % 0x100000000).try_into().unwrap();
+        let hash_u256: u256 = hash.into();
+        let hash_u32: u32 = (hash_u256 % 0x100000000).try_into().unwrap();
         
         // Scale the result to fit within the provided range
         let range = max - min + 1;
@@ -111,13 +112,13 @@ pub impl PseudoRandom of PseudoRandomTrait {
         let hash = pedersen(pedersen(timestamp.into(), block_number.into()), salt);
         
         // Convert the hash to a u64 value
-        let hash_u64: u64 = (hash % 0x10000000000000000).try_into().unwrap();
+        let hash_u256: u256 = hash.into();
+        let hash_u64: u64 = (hash_u256 % 0x10000000000000000).try_into().unwrap();
         
         // Scale the result to fit within the provided range
         let range = max - min + 1;
         min + (hash_u64 % range)
-    }
-}
+    }}
 
 #[cfg(test)]
 mod tests {

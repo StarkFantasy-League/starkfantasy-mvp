@@ -1,5 +1,5 @@
 [package]
-cairo-version = "=2.9.2"
+cairo-version = "=2.10.1"
 name = "starkfantasy"
 version = "1.2.2"
 edition = "2024_07"
@@ -9,17 +9,17 @@ sierra-replace-ids = true
 
 [scripts]
 test = "sozo test"
-migrate = "sozo build && sozo migrate"                      # scarb run migrate
-spawn = "sozo execute starkfantasy-actions spawn --wait"    # scarb run spawn
-move = "sozo execute starkfantasy-actions move -c 1 --wait" # scarb run move
+migrate = "sozo build && sozo migrate"
+spawn = "sozo execute starkfantasy-actions spawn --wait"
+move = "sozo execute starkfantasy-actions move -c 1 --wait"
 
 [dependencies]
-dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.2.2" }
+dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.5.0" }
 
 [[target.starknet-contract]]
 build-external-contracts = ["dojo::world::world_contract::world"]
 
 [dev-dependencies]
-assert_macros = "=2.9.2"
-cairo_test = "=2.9.2"
-dojo_cairo_test = { git = "https://github.com/dojoengine/dojo", tag = "v1.2.2" }
+assert_macros = "=2.10.1"
+cairo_test = "=2.10.1"
+dojo_cairo_test = { git = "https://github.com/dojoengine/dojo", tag = "v1.5.0" }
