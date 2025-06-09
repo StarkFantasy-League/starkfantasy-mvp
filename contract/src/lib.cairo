@@ -7,6 +7,7 @@ pub mod systems {
 pub mod helpers {
     pub mod timestamp;
     pub mod gameweek_helper;
+    pub mod pseudo_random;
 }
 
 pub mod models {
